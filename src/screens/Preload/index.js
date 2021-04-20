@@ -21,30 +21,25 @@ export default () => {
             if(token) {
                 let res = await Api.checkToken(token)
                 if(res.token) {
-
                     await AsyncStorage.setItem('token', res.token);
-
                     userDispatch({
                         type: 'setAvatar',
                         payload:{
                             avatar: res.data.avatar
                         }
                     });
-
                     navigation.reset({
                         routes:[{name: 'MainTab'}]
                     });
-
                 } else {
                     navigation.navigate('SignIn');
                 }
-
             } else {
                 navigation.navigate('SignIn');
             }
         }
         checkToken();
-    }, [])
+    }, []);
 
     return (
         <Container>
